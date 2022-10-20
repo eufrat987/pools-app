@@ -1,0 +1,23 @@
+{% extends 'pools/base.html' %}
+{% block main_content %}
+
+<h1>{{question.question_text}}</h1>
+
+<ul>
+
+    {% for choice in question.choices_set.all %}
+
+        <li> {{choice.choice_text}}
+            -- {{choice.votes}}
+            vote{{ choice.votes|pluralize}} </li>
+
+    {% endfor %}
+
+    <a href="{% url 'pools:detail' question.id %}"> Vote again </a>
+
+</ul>
+
+
+
+
+{% endblock %}

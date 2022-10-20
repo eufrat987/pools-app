@@ -1,0 +1,25 @@
+{% extends 'pools/base.html' %}
+{% block main_content %}
+
+<h1>{{question.question_text}}</h1>
+
+{% if error_message %}
+  <p><strong>{{error_message}}</strong></p>
+{% endif %}
+
+<form action="{% url 'pools:vote' question.id %}" method="post">
+  {% csrf_token %}
+
+  {% for choice in question.choices_set.all %}
+  <p>
+    <input type="radio" name="choice" id="{{choice.id}}" value="{{choice.id}}"/>
+    <label for="{{choice.id}}">{{choice.choice_text}}</label>
+  </p>
+  {% endfor %}
+
+  <input type="submit" class="btn btn-success" value="vote">
+</form>
+
+<a href="{% url 'pools:index' %}"> Back to question list </a>
+
+{% endblock %}

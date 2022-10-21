@@ -1,2 +1,2 @@
 # pools-app
-Pools aplication
+Pools application
